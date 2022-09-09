@@ -1,6 +1,20 @@
 ﻿## Technical background
 At the time of allocation of this technical round, it was mentioned in the provided documentation that the application needs to be developed using Angular. Being inexperienced at Angular and Typescript. I went through their documentations and got myself familiar with Angular's concepts and Typescript syntaxes with the help of few tutorial apps.
 
+I was later informed about the freedom to switch to a comfortable Javascript framework (React in my case), but since I had already gotten significant work done here, I continued working on this app. Please let me know if I should also submit a similar React app.
+
+## Features
+
+ - Create cards.
+ - Edit card contents - title, description, category column.
+ - Validate Title and description for cards.
+ - Drag and drop to re-order cards, or to move from one category column to another.
+ - Delete cards.
+ - Create categories.
+ - Edit category names/labels.
+ - Delete categories.
+ - Encrypts and stores users data in local storage.
+
 ## Design approach
 
 The given problem statement demands for a Minimum Viable Product that provides a service similar to **Trello**. Trello's Kanban-style approach traditionally uses bulletin boards that allows users to organise their tasks and milestones accordingly. Kanban consists of mainly two components - boards and cards. These constitute of main components around which we need to build the app.
@@ -27,17 +41,6 @@ Interfaces -
 
  3. Grid - At the top of hierarchy, holds an array of of all Categories and represents a 2D-array of all cards.
 
-## Features
-
- - Create cards.
- - Edit card contents - title, description, category column.
- - Validate Title and description for cards.
- - Drag and drop to re-order cards, or to move from one category column to another.
- - Delete cards.
- - Create categories.
- - Edit category names/labels.
- - Delete categories.
- - Encrypts and stores users data in local storage.
 
 ## Services
 
@@ -59,7 +62,7 @@ For Card contents. :
 For Cards :
 
  1. **`addCard(i:number) ...line 160`**  - Takes a parameter index 'i', that denotes the category column to which a card needs to be added. A new default card is pushed to the cards array of this column, and modal is opened to enter content.
- 2. **`deleteCard(i:number, j:number, modal:any) ...line188`** - Takes parameters :
+ 2. **`deleteCard(i:number, j:number, modal:any) ...line 188`** - Takes parameters :
 	 1. index i : Index of category column to delete from.
 	 2. index j : Index of card to delete.
 	 3. modal : reference to the modal HTMLObject open in browser from where the function call was triggered via delete button call. Required to close the modal after deleting the card.
@@ -69,7 +72,7 @@ For Categories :
  1. **`addCategory() ...line 160`** - Appends a new category column to the end of the grid.
  2. **`deleteCategory(index:number) ...line 169`** - Deletes the category column present at given index.
  3. **`getCategories() ...line 124`** - Returns a list of all available categories to choose from.
- 4. **`handleColumnKeyChange(index:number, event:any) ...line118`** - Change the key(label) for category column present at given index to event's target value.
+ 4. **`handleColumnKeyChange(index:number, event:any) ...line 118`** - Change the key(label) for category column present at given index to event's target value.
 
 For Modal : 
 
@@ -81,6 +84,8 @@ For Modal :
 Handled by `handleTitleChange()` and `handleDescriptionChange()`.
  
 ## Questions that might arise
+
+ - **How is Drag and Drop implemented?** --- Drag and drop has been implemented using the [ng2-dracula](https://www.npmjs.com/package/ng2-dragula) package.
 
  - **Why is the secret key for encryption/decryption hard-coded? Why not use an environment variable, it's secure.** --- I felt that static hosts like Github pages probably will not allow me to declare and utilise environment variables.
 
