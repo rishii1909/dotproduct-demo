@@ -145,8 +145,12 @@ export class AppComponent {
   }
 
   deleteCard = (i:number, j:number, modal:any) => {
-    this.store[i].children.splice(j, 1);
     modal.dismiss("deleted card");
+    this.active_modal = {
+      i : -1,
+      j : -1
+    }
+    this.store[i].children.splice(j, 1);
     this.saveDataToLocal();
   }
 
