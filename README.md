@@ -3,7 +3,10 @@ At the time of allocation of this technical round, it was mentioned in the provi
 
 I was later informed about the freedom to switch to a comfortable Javascript framework (React in my case), but since I had already gotten significant work done here, I continued working on this app. Please let me know if I should also submit a similar React app.
 
-## Features [View app](https://rishii1909.github.io/dotproduct-demo/)
+## [View app](https://rishii1909.github.io/dotproduct-demo/)
+You can view app at [https://rishii1909.github.io/dotproduct-demo](https://rishii1909.github.io/dotproduct-demo/)
+
+## Features
 
  - Create cards.
  - Edit card contents - title, description, category column.
