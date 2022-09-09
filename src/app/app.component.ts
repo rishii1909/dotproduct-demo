@@ -54,7 +54,6 @@ export class AppComponent {
 
     LocalStorageInteractionService.clearData();
     this.store = this.fetchStore();
-    console.log(this.store);
 
     this.saveDataToLocal();
 
@@ -63,7 +62,6 @@ export class AppComponent {
   saveDataToLocal = () => {
 
     const data = simpleCrypto.encrypt(JSON.stringify(this.store));
-    // console.log(this.store, data);
     LocalStorageInteractionService.saveData("store", data);
   }
 
@@ -71,7 +69,7 @@ export class AppComponent {
     console.log(this.store);
   }
 
-  handleTitleChange = (event:any) => {
+  handleTitleChange = (event:any) => {  
     this.titleError = "";
     this.disableBtn = false;
 
