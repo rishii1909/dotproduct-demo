@@ -4,7 +4,7 @@
     <div class="column" *ngFor="let column of store; let i = index">
       <div class="header-holder">
 
-        <h2 class="ui transparent big input">
+        <h2 class="ui transparent big input category-title">
 
           <input placeholder="Enter title..." type="text" value="{{column.key}}" (change)="handleColumnKeyChange(i, $event)">
         </h2>
@@ -24,7 +24,6 @@
         <div *ngFor="let card of column.children; let j = index">
           <div class="card" (click)="show(i,j)">
             <h3>{{card.title}}</h3>
-            <!-- <p>{{card.description.length > 30 ? card.description.substring(0, 500 ) + "..." : card.description}}</p> -->
 
             <p class="card-description" *ngFor="let line of card.description.split('\n')">{{line}}</p>
 
@@ -34,16 +33,18 @@
                 <div class="content ui form">
                     <div class="ui field">
                       <label for="title">Title</label>
-                      <input name="title" type="text" class="title" value="{{card.title}}" (change)="handleTitleChange($event)">
+                      <input name="title" type="text" class="title" value="{{card.title}}" (change)="handleTitleChange($event)" (input)="handleTitleChange($event)">
                     </div>
+                    <p class="error" *ngIf="titleError">{{titleError}}</p>
                     <div class="ui field">
                       <label for="description">Description</label>
                       
-                      <textarea name="description" type="text" class="description" value="{{card.description}}" (change)="handleDescriptionChange($event)"></textarea>
+                      <textarea name="description" type="text" class="description" value="{{card.description}}" (change)="handleDescriptionChange($event)" (input)="handleDescriptionChange($event)"></textarea>
                     </div>
+                    <p class="error" *ngIf="descriptionError">{{descriptionError}}</p>
                     <div class="ui field">
-                      <label for="category">Category</label>
-                      <select class="ui dropdown" (change)="handleCategoryChange(i, j, $event, modal)">
+                      <label for="dropdown">Category</label>
+                      <select class="ui dropdown" (change)="handleCategoryChange(i, j, $event, modal)" (input)="handleCategoryChange(i, j, $event, modal)">
                         <option value="i">{{column.key}}</option>
                         <option *ngFor="let category of getCategories()" value="{{category.index}}">{{category.key}}</option>
                       </select>
@@ -55,8 +56,8 @@
                       <i class="ui trash icon "></i>
                       Delete
                     </button>
-                    <button class="ui purple labeled icon button" (click)="modal.approve('done');hide()" autofocus>
-                      <i class="arrow alternate circle right icon "></i>
+                    <button class="ui purple labeled icon {{disableBtn && 'disabled'}} button" (click)="modal.approve('done');hide()" autofocus>
+                      <i class="arrow alternate circle right icon"></i>
                       Done
                     </button>
                 </div>

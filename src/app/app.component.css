@@ -165,3 +165,18 @@
   transform: scale(1.1);
   cursor: pointer;
 }
+
+.error{
+  color: red;
+}
+
+.category-title > input{
+  transition: 0.2s ease-in;
+}
+
+.category-title > input:focus{
+  border: 1px solid gray !important;
+  padding: 0.4em !important;
+  border-radius: 3px !important;
+
+}

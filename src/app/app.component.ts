@@ -12,6 +12,10 @@ import { Card } from './interfaces/card';
 const secretKey = "some-unique-key";
 const simpleCrypto = new SimpleCrypto(secretKey);
 
+function toTitleCase(str:string) {
+  return str.toLowerCase().replace(/\.\s*([a-z])|^[a-z]/gm, s => s.toUpperCase());
+}
+
 
 @Component({
   selector: "app-root",
@@ -23,6 +27,9 @@ export class AppComponent {
   title = "app";
   store:Grid = [];
   showModal = false;
+  titleError = "";
+  descriptionError = "";
+  disableBtn = false
   
   active_modal = {
     i : -1,
@@ -65,11 +72,47 @@ export class AppComponent {
   }
 
   handleTitleChange = (event:any) => {
-    this.store[this.active_modal.i].children[this.active_modal.j].title = event.target.value;
+    this.titleError = "";
+    this.disableBtn = false;
+
+    let val = event.target.value;
+
+    const returnError = (error:string) => {
+      this.titleError = error 
+      this.disableBtn = true;
+    }
+
+    if(val.length == 0){
+      returnError("Title cannot be blank.");
+      return;
+    }
+    if (!/^[A-Za-z ]+$/.test(val)){
+      returnError("Title cannot contain characters other than alphabets and spaces.");
+      return;
+    }
+
+    val = toTitleCase(val);
+    this.store[this.active_modal.i].children[this.active_modal.j].title = val;
     this.saveDataToLocal();
   }
 
   handleDescriptionChange = (event:any) => {
+
+    this.descriptionError = "";
+    this.disableBtn = false;
+
+    let val = event.target.value;
+
+    const returnError = (error:string) => {
+      this.descriptionError = error 
+      this.disableBtn = true;
+    }
+
+    if(val.length < 25){
+      returnError("Description should be of a minimum 25 characters.");
+      return;
+    }
+
     this.store[this.active_modal.i].children[this.active_modal.j].description = event.target.value;
     this.saveDataToLocal();
   }

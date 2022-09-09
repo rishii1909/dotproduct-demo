@@ -3,21 +3,27 @@ export const default_store = [
       key : "To do",
       children : [
         {
-          title : "Default Do card 1",
-          description : "Default description"
+          title : "Sample To do card",
+          description : "Add your own description here"
         },
-        {
-          title : "Default Do card 2",
-          description : "Default description"
-        }
       ]
     },
     {
       key : "Doing",
-      children : []
+      children : [
+        {
+          title : "Sample Doing card",
+          description : "Add your own description here"
+        },
+      ]
     },
     {
       key : "Done",
-      children : []
+      children : [
+        {
+          title : "Sample Done card",
+          description : "Add your own description here"
+        },
+      ]
     },
   ];
